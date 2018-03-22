@@ -51,10 +51,13 @@ public class GrabObjects : MonoBehaviour {
 		isGrabbing = true;
 		grabbedObj = obj;
 
-		obj.GetComponent<Rigidbody> ().useGravity = false;
-		obj.GetComponent<BoxCollider> ().enabled = false;
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
+        rb.useGravity = false;
+        rb.isKinematic = true;
 
-		obj.parent = hand;
+        obj.GetComponent<BoxCollider> ().enabled = false;
+
+        obj.parent = hand;
 		obj.DOLocalMove (Vector3.zero, 0.3f);
 
 		depthOfField.enabled = true;
@@ -63,12 +66,12 @@ public class GrabObjects : MonoBehaviour {
 	void ThrowObject(Transform obj)
 	{
 		isGrabbing = false;
-
 		obj.parent = null;
 
 		Rigidbody rb = obj.GetComponent<Rigidbody> ();
 		rb.useGravity = true;
-		obj.GetComponent<BoxCollider> ().enabled = true;
+        rb.isKinematic = false;
+        obj.GetComponent<BoxCollider> ().enabled = true;
 		rb.velocity = Camera.main.transform.forward * throwSpeed / rb.mass;
 
 		depthOfField.enabled = false;
@@ -76,13 +79,15 @@ public class GrabObjects : MonoBehaviour {
 
 	void DropObject(Transform obj)
 	{
-		isGrabbing = false;
+        Debug.Log("oui");
 
+		isGrabbing = false;
 		obj.parent = null;
 
 		Rigidbody rb = obj.GetComponent<Rigidbody> ();
-		rb.useGravity = true;
-		obj.GetComponent<BoxCollider> ().enabled = true;
+        rb.isKinematic = false;
+        rb.useGravity = true;
+        obj.GetComponent<BoxCollider> ().enabled = true;
 
 		depthOfField.enabled = false;
 	}
