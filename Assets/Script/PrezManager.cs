@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class PrezManager : MonoBehaviour {
 
@@ -22,6 +23,9 @@ public class PrezManager : MonoBehaviour {
 	Vector3 originRot;
 
 	bool canDeactivate = true;
+
+	public AudioMixer SfxAudioMixer;
+	public AudioMixer ambientAudioMixer;
 
 	[Header ("Audio")]
 	public AudioSource Open_Audio;
@@ -51,6 +55,8 @@ public class PrezManager : MonoBehaviour {
 					{
 						canvasGroup2.DOFade(1, 1.5f);
 						canDeactivate = true;
+						SfxAudioMixer.SetFloat("SfxVolume", -80f);
+						ambientAudioMixer.SetFloat("AmbientVolume", -10f);
 					});
 			});
 		camera.DORotate (Vector3.zero, 2f);
