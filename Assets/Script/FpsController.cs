@@ -18,7 +18,7 @@ public class FpsController : MonoBehaviour {
 	public AudioSource Walk_Audio;
 	public AudioSource Run_Audio;
 	public AudioSource WalkSlow_Audio;
-
+	public AudioSource Crouch_Audio;
 
 	private AudioSource actual_Audio;
 
@@ -197,6 +197,8 @@ public class FpsController : MonoBehaviour {
 	{
 		if (!isCrouching) 
 		{
+			Crouch_Audio.Play ();
+
 			camera.DOKill ();
 			camera.transform.DOLocalMoveY (cameraOriginYPosition - 0.7f, 1f).SetEase(Ease.OutBack);
 
@@ -206,6 +208,8 @@ public class FpsController : MonoBehaviour {
         }
 		if (isCrouching) 
 		{
+			Crouch_Audio.Play ();
+
 			camera.DOKill ();
 			camera.transform.DOLocalMoveY (cameraOriginYPosition, 1f).SetEase(Ease.InOutBack);
 
