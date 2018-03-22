@@ -49,14 +49,15 @@ public class PrezManager : MonoBehaviour {
 		originRot = camera.transform.eulerAngles;
 
 		camera.DOKill ();
+
 		camera.DOMove (new Vector3 (26.5f, 2, 7.15f), 2f).OnComplete(() =>
 			{
 				canvasGroup1.DOFade(1, 0.5f).OnComplete(() =>
 					{
 						canvasGroup2.DOFade(1, 1.5f);
 						canDeactivate = true;
-						SfxAudioMixer.SetFloat("SfxVolume", -80f);
-						ambientAudioMixer.SetFloat("AmbientVolume", -10f);
+						SfxAudioMixer.DOSetFloat("SfxVolume", -80f, 3f);
+						ambientAudioMixer.DOSetFloat("AmbientVolume", -10f, 1f);
 					});
 			});
 		camera.DORotate (Vector3.zero, 2f);
@@ -64,6 +65,9 @@ public class PrezManager : MonoBehaviour {
 
     void DeactivateCanvas()
     {
+		SfxAudioMixer.DOSetFloat("SfxVolume", 0f, 0.2f);
+		ambientAudioMixer.DOSetFloat("AmbientVolume", 0f, 0.2f);
+
 		Close_Audio.Play ();
 
 		canDeactivate = false;

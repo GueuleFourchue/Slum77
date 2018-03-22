@@ -8,12 +8,14 @@ public class GrabObjects : MonoBehaviour {
 	public Transform hand;
 	public float throwSpeed;
 
+	UnityStandardAssets.ImageEffects.DepthOfField depthOfField;
+
 	Transform grabbedObj;
 	bool isGrabbing;
 
 	void Start () 
 	{
-		
+		depthOfField = Camera.main.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>();
 	}
 	
 
@@ -54,6 +56,8 @@ public class GrabObjects : MonoBehaviour {
 
 		obj.parent = hand;
 		obj.DOLocalMove (Vector3.zero, 0.3f);
+
+		depthOfField.enabled = true;
 	}
 
 	void ThrowObject(Transform obj)
@@ -66,6 +70,8 @@ public class GrabObjects : MonoBehaviour {
 		rb.useGravity = true;
 		obj.GetComponent<BoxCollider> ().enabled = true;
 		rb.velocity = Camera.main.transform.forward * throwSpeed / rb.mass;
+
+		depthOfField.enabled = false;
 	}
 
 	void DropObject(Transform obj)
@@ -78,6 +84,6 @@ public class GrabObjects : MonoBehaviour {
 		rb.useGravity = true;
 		obj.GetComponent<BoxCollider> ().enabled = true;
 
-		Debug.Log ("drop");
+		depthOfField.enabled = false;
 	}
 }
