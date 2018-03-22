@@ -79,8 +79,6 @@ public class GrabObjects : MonoBehaviour {
 
 	void DropObject(Transform obj)
 	{
-        Debug.Log("oui");
-
 		isGrabbing = false;
 		obj.parent = null;
 
