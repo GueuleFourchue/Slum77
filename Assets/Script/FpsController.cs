@@ -149,10 +149,10 @@ public class FpsController : MonoBehaviour {
 			{
 				isRunning = true;
 				camera.DOKill ();
-				camera.DOFieldOfView (90, 0.8f);
+				camera.DOFieldOfView (85, 0.8f);
 
 				effect.enabled = true;
-			}
+            }
 
 
 		} 
@@ -166,8 +166,6 @@ public class FpsController : MonoBehaviour {
 
 			if (!audioIsStopping)
 				StopSFX (Run_Audio);
-
-            headbob.run = false;
         }
 			
 	}
@@ -181,7 +179,6 @@ public class FpsController : MonoBehaviour {
 		if (Input.GetKeyUp (KeyCode.LeftControl)) 
 		{
 			isSlowWalking = false;
-            headbob.idle = false;
 
             if (!audioIsStopping)
                 StopSFX(WalkSlow_Audio);
@@ -199,19 +196,16 @@ public class FpsController : MonoBehaviour {
 
             GetComponent<CapsuleCollider>().height = 1.5f;
             GetComponent<CapsuleCollider>().center = new Vector3(0,-0.25f,0);
-
         }
 		if (isCrouching) 
 		{
 			Crouch_Audio.Play ();
 
 			camera.DOKill ();
-			camera.transform.DOLocalMoveY (cameraOriginYPosition, 1f).SetEase(Ease.InOutBack);
+			camera.transform.DOLocalMoveY (cameraOriginYPosition, 1f).SetEase(Ease.InOutCubic);
 
             GetComponent<CapsuleCollider>().height = 2f;
             GetComponent<CapsuleCollider>().center = Vector3.zero;
-
-            headbob.idle = false;
         }
 
 		isCrouching = !isCrouching;

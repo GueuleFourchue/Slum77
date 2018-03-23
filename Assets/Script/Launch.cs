@@ -42,6 +42,7 @@ public class Launch : MonoBehaviour {
         blur.enabled = false;
         bloom.enabled = false;
         fps.enabled = true;
+        anim.enabled = false;
     }
 
 }

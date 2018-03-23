@@ -10069,7 +10069,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-3903764
+  m_Name: pb_Mesh335992
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -23120,10 +23120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea03f34b5f4879643bd9e77fd6ff0881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idle: 0
-  walk: 0
-  run: 0
-  crouch: 0
   bobbingSpeed: 0.05
   bobbingAmount: 0.01
 --- !u!1 &1784867941

@@ -6,113 +6,6 @@ using DG.Tweening;
 
 public class HeadBob : MonoBehaviour {
 
-	/*
-    public bool idle;
-    public bool walk;
-    public bool run;
-    public bool crouch;
-
-	void Start ()
-    {
-        Idle();
-	}
-
-    void Idle()
-    {
-        if (walk)
-        {
-            Walk();
-            return;
-        }
-
-        if (run)
-        {
-            Run();
-            return;
-        }
-
-        LookCenter();
-        transform.DOKill();
-        transform.DOLocalMoveY(transform.localPosition.y - 0.05f, 1f).OnComplete(() =>
-        {
-            transform.DOLocalMoveY(transform.localPosition.y + 0.05f, 1f).OnComplete(() =>
-            {
-                Idle();
-            });
-        });
-    }
-
-    void Walk()
-    {
-        if (idle)
-        {
-            Idle();
-            return;
-        }
-
-        if (run)
-        {
-            Run();
-            return;
-        }
-
-
-        LookCenter();
-        transform.DOKill();
-        transform.DOLocalMoveY(transform.localPosition.y - 0.08f, 0.5f).OnComplete(() =>
-        {
-            transform.DOLocalMoveY(transform.localPosition.y + 0.08f, 0.5f).OnComplete(() =>
-            {
-                Walk();
-            });
-        });
-    }
-
-    void Run()
-    {
-        if (idle)
-        {
-            Idle();
-            return;
-        }
-
-        if (walk)
-        {
-            Walk();
-            return;
-        }
-
-        LookCenter();
-        transform.DOKill();
-        transform.DOLocalMoveY(transform.localPosition.y - 0.1f, 0.5f).OnComplete(() =>
-        {
-            transform.DOLocalMoveY(transform.localPosition.y + 0.1f, 0.5f).OnComplete(() =>
-            {
-                Run();
-            });
-        });
-    }
-
-    void LookCenter()
-    {
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            transform.DOKill();
-            transform.DOLookAt(hit.point, 0.5f);
-        }
-        
-    }
-
-	*/
-
-	public bool idle;
-	public bool walk;
-	public bool run;
-	public bool crouch;
-
 	private float timer = 0.0f;
 	public float bobbingSpeed = 0.18f;
 	public float bobbingAmount = 0.01f;
@@ -141,7 +34,7 @@ public class HeadBob : MonoBehaviour {
 		if (waveslice != 0) {
 			float translateChange = waveslice * bobbingAmount;
 			float totalAxes = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
-			totalAxes = Mathf.Clamp (totalAxes, 0.0f, 1.0f);
+			//totalAxes = Mathf.Clamp (totalAxes, 0.0f, 1.0f);
 			//translateChange = totalAxes * translateChange;
 			cSharpConversion.y = midpoint + translateChange;
 		}

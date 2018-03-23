@@ -9,7 +9,6 @@ public class PrezManager : MonoBehaviour {
 
     CanvasGroup canvasGroup1;
 	public CanvasGroup canvasGroup2;
-
     public GameObject prezCamera;
     public GameObject canvasCursor;
     public GameObject player;
