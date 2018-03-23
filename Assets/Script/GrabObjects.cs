@@ -8,6 +8,9 @@ public class GrabObjects : MonoBehaviour {
 	public Transform hand;
 	public float throwSpeed;
 
+    public Material alphaMat;
+    Material grabbedMat;
+
 	UnityStandardAssets.ImageEffects.DepthOfField depthOfField;
 
 	Transform grabbedObj;
@@ -51,6 +54,17 @@ public class GrabObjects : MonoBehaviour {
 		isGrabbing = true;
 		grabbedObj = obj;
 
+        //Material
+        Renderer rend = obj.GetChild(0).GetComponent<Renderer>();
+        grabbedMat = rend.material;
+        rend.material = alphaMat;
+
+        //Audio
+        GrabObjectSfx script = grabbedObj.GetComponent<GrabObjectSfx>();
+        script.isGrabbed = true;
+        script.Grab_Audio.pitch = Random.Range(0.9f, 1.1f);
+        script.PlaySFX(script.Grab_Audio);
+
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         rb.useGravity = false;
         rb.isKinematic = true;
@@ -68,7 +82,12 @@ public class GrabObjects : MonoBehaviour {
 		isGrabbing = false;
 		obj.parent = null;
 
-		Rigidbody rb = obj.GetComponent<Rigidbody> ();
+        //Material
+        Renderer rend = obj.GetChild(0).GetComponent<Renderer>();
+        rend.material = grabbedMat;
+
+
+        Rigidbody rb = obj.GetComponent<Rigidbody> ();
 		rb.useGravity = true;
         rb.isKinematic = false;
         obj.GetComponent<BoxCollider> ().enabled = true;
@@ -82,7 +101,11 @@ public class GrabObjects : MonoBehaviour {
 		isGrabbing = false;
 		obj.parent = null;
 
-		Rigidbody rb = obj.GetComponent<Rigidbody> ();
+        //Material
+        Renderer rend = obj.GetChild(0).GetComponent<Renderer>();
+        rend.material = grabbedMat;
+
+        Rigidbody rb = obj.GetComponent<Rigidbody> ();
         rb.isKinematic = false;
         rb.useGravity = true;
         obj.GetComponent<BoxCollider> ().enabled = true;
