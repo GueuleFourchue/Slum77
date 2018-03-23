@@ -43,7 +43,6 @@ public class FpsController : MonoBehaviour {
 	void Start ()
 	{
 		camera = Camera.main;
-		Cursor.visible = false;
 		animator = camera.GetComponent<Animator> ();
 
 		effect = camera.GetComponent <VignetteAndChromaticAberration>();
