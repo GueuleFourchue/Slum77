@@ -20,8 +20,9 @@ public class Door : MonoBehaviour {
 	[Header ("Sounds")]
 	public AudioSource Open_Audio;
 	public AudioSource Close_Audio;
+    public AudioSource Button_Audio;
 
-	void Start () 
+    void Start () 
 	{
 		animator = GetComponent<Animator> ();	
 		body = transform.GetChild (0).transform;
@@ -40,7 +41,8 @@ public class Door : MonoBehaviour {
 			{
 				if (Vector3.Distance (hit.point, transform.position) < 7) 
 				{
-					StartCoroutine (DoorMove (zMoveValue, Open_Audio, false));
+                    Button_Audio.Play();
+                    StartCoroutine (DoorMove (zMoveValue, Open_Audio, false));
 				}
 			}
 		}
