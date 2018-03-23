@@ -7,6 +7,7 @@ using UnityStandardAssets.ImageEffects;
 public class FpsController : MonoBehaviour {
 
     public HeadBob headbob;
+    public Light torchLight;
 
     [Header("Values")]
 	public float mouseSensitivity;
@@ -19,8 +20,9 @@ public class FpsController : MonoBehaviour {
 	public AudioSource Run_Audio;
 	public AudioSource WalkSlow_Audio;
 	public AudioSource Crouch_Audio;
+    public AudioSource Torch_Audio;
 
-	private AudioSource actual_Audio;
+    private AudioSource actual_Audio;
 
 	float horizontal;
 	float vertical;
@@ -39,6 +41,7 @@ public class FpsController : MonoBehaviour {
 	VignetteAndChromaticAberration effect;
 
 	bool audioIsStopping;
+    bool torchOn = true;
 
 	void Start ()
 	{
@@ -59,6 +62,10 @@ public class FpsController : MonoBehaviour {
 		{
 			Crouch ();
 		}
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Torch();
+        }
 
 		Movement ();
 	}
@@ -101,10 +108,6 @@ public class FpsController : MonoBehaviour {
 				Walk_Audio.DOFade (0, 0.2f);	
 				Run_Audio.DOFade (0, 0.2f);
 
-                //headbob.run = false;
-                //headbob.walk = false;
-               // headbob.idle = true;
-
 				headbob.Idle ();
             }
 			else if (isRunning)
@@ -112,10 +115,6 @@ public class FpsController : MonoBehaviour {
 				PlaySFX (Run_Audio, 0.55f);
 				Walk_Audio.DOFade (0, 0.2f);	
 				WalkSlow_Audio.DOFade (0, 0.2f);
-
-                //headbob.idle = false;
-                //headbob.walk = false;
-                //headbob.run = true;
 
 				headbob.Run ();
             }
@@ -125,10 +124,6 @@ public class FpsController : MonoBehaviour {
 				Run_Audio.DOFade (0, 0.2f);	
 				WalkSlow_Audio.DOFade (0, 0.2f);
 
-               // headbob.run = false;
-                //headbob.idle = false;
-               // headbob.walk = true;
-
 				headbob.Walk ();
             }
 				
@@ -137,10 +132,8 @@ public class FpsController : MonoBehaviour {
 		if (moveX == 0 && moveZ == 0 && actual_Audio != null && !audioIsStopping) 
 		{
 			StopSFX (Walk_Audio);
-            //headbob.walk = false;
-           // headbob.idle = true;
-
-			headbob.Idle ();
+            StopSFX(WalkSlow_Audio);
+            headbob.Idle ();
         }
 			
 		transform.Translate(moveX, 0, moveZ);
@@ -189,6 +182,9 @@ public class FpsController : MonoBehaviour {
 		{
 			isSlowWalking = false;
             headbob.idle = false;
+
+            if (!audioIsStopping)
+                StopSFX(WalkSlow_Audio);
         }
 	}
 
@@ -245,5 +241,21 @@ public class FpsController : MonoBehaviour {
 		}
 	}
 
+    void Torch()
+    {
+        if (torchOn)
+        {
+            torchLight.enabled = false;
+            torchOn = false;
+        }
+           
+        else
+        {
+            torchLight.enabled = true;
+            torchOn = true;
+        }
 
+        Torch_Audio.pitch = Random.Range(0.9f, 1.1f);
+        Torch_Audio.Play();
+    }
 }

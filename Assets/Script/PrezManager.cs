@@ -10,6 +10,7 @@ public class PrezManager : MonoBehaviour {
     CanvasGroup canvasGroup1;
 	public CanvasGroup canvasGroup2;
 
+    public GameObject prezCamera;
     public GameObject canvasCursor;
     public GameObject player;
 	public HeadBob headbob;
@@ -52,7 +53,8 @@ public class PrezManager : MonoBehaviour {
 
 		camera.DOMove (new Vector3 (26.5f, 2, 7.15f), 2f).OnComplete(() =>
 			{
-				canvasGroup1.DOFade(1, 0.5f).OnComplete(() =>
+                prezCamera.SetActive(true); 
+                canvasGroup1.DOFade(1, 0.5f).OnComplete(() =>
 					{
 						canvasGroup2.DOFade(1, 1.5f);
 						canDeactivate = true;
@@ -76,7 +78,8 @@ public class PrezManager : MonoBehaviour {
 		canvasGroup2.DOFade(0, 0.5f).OnComplete(() =>
 			{
 				canvasGroup1.DOFade(0, 1f);
-				camera.DOMove (originPoz, 2f).OnComplete(() =>
+                prezCamera.SetActive(false);
+                camera.DOMove (originPoz, 2f).OnComplete(() =>
 					{
 						canvasCursor.SetActive(true);
 						player.GetComponent<FpsController>().enabled = true;
