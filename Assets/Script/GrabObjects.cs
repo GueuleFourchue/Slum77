@@ -69,7 +69,7 @@ public class GrabObjects : MonoBehaviour {
         rb.useGravity = false;
         rb.isKinematic = true;
 
-        obj.GetComponent<BoxCollider> ().enabled = false;
+		obj.GetComponentInChildren<MeshCollider> ().enabled = false;
 
         obj.parent = hand;
 		obj.DOLocalMove (Vector3.zero, 0.3f);
@@ -90,7 +90,7 @@ public class GrabObjects : MonoBehaviour {
         Rigidbody rb = obj.GetComponent<Rigidbody> ();
 		rb.useGravity = true;
         rb.isKinematic = false;
-        obj.GetComponent<BoxCollider> ().enabled = true;
+		obj.GetComponentInChildren<MeshCollider> ().enabled = true;
 		rb.velocity = Camera.main.transform.forward * throwSpeed / rb.mass;
 
 		depthOfField.enabled = false;
@@ -108,7 +108,7 @@ public class GrabObjects : MonoBehaviour {
         Rigidbody rb = obj.GetComponent<Rigidbody> ();
         rb.isKinematic = false;
         rb.useGravity = true;
-        obj.GetComponent<BoxCollider> ().enabled = true;
+		obj.GetComponentInChildren<MeshCollider> ().enabled = true;
 
 		depthOfField.enabled = false;
 	}
