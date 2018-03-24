@@ -6739,7 +6739,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 512183940}
   m_LocalRotation: {x: -0, y: 0.1046929, z: -0, w: 0.99450463}
-  m_LocalPosition: {x: 46.34, y: 1.01, z: 11.972}
+  m_LocalPosition: {x: 46.34, y: 1.01, z: 12.125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2054825010}
@@ -8334,7 +8334,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 8f7e9b5ed8d4efc469550b2ce98b0c4b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0.059
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8f7e9b5ed8d4efc469550b2ce98b0c4b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8342,7 +8342,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8f7e9b5ed8d4efc469550b2ce98b0c4b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.275
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8f7e9b5ed8d4efc469550b2ce98b0c4b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -8376,6 +8376,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.4965686
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 8f7e9b5ed8d4efc469550b2ce98b0c4b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 354da65beafe9eb478f1802ba1431b88, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f7e9b5ed8d4efc469550b2ce98b0c4b, type: 3}
   m_IsPrefabParent: 0
@@ -8401,6 +8405,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 8f7e9b5ed8d4efc469550b2ce98b0c4b, type: 3}
+--- !u!114 &584483626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 584483624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02252b669b1362045a9014adb29375cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 2
 --- !u!1001 &589399183
 Prefab:
   m_ObjectHideFlags: 0
@@ -8481,6 +8497,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 4d1553ef3ef10e846aa59cb033aa4aac, type: 3}
+--- !u!114 &606487932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 606487930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02252b669b1362045a9014adb29375cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1
 --- !u!1 &615284892
 GameObject:
   m_ObjectHideFlags: 0
@@ -12856,7 +12884,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 55296d1b6ee54e14e8eb4648d4b448ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12940,6 +12968,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e092d655a5c92428eafaade2dbd203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alphaMaterials:
+  - {fileID: 2100000, guid: 66418c9e692a4fa4c8370cd8c69eea83, type: 2}
+  - {fileID: 2100000, guid: 6cdfea980aa15d54692ed23bb25383d9, type: 2}
+  - {fileID: 2100000, guid: 9dd960d2ed614ba4c8a4dac86a05d6a4, type: 2}
+  - {fileID: 2100000, guid: 872e2a0f56bad83498ad6f906a7ecacb, type: 2}
   hand: {fileID: 2012877647}
   throwSpeed: 60
   alphaMat: {fileID: 2100000, guid: e4785ae8293580d49901eeccccc2e347, type: 2}
@@ -17038,6 +17071,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.6666676
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: a7eb9a0e17495834fa01fcb4cd7fc98e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 09453284093d5d741b0dda5d109a4559, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7eb9a0e17495834fa01fcb4cd7fc98e, type: 3}
   m_IsPrefabParent: 0
@@ -25437,6 +25474,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 2.0301473
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 4d1553ef3ef10e846aa59cb033aa4aac, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cedbbe3fca6160949b26c5648fab6eaa, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d1553ef3ef10e846aa59cb033aa4aac, type: 3}
   m_IsPrefabParent: 0
@@ -28074,6 +28115,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: a7eb9a0e17495834fa01fcb4cd7fc98e, type: 3}
+--- !u!114 &2016595286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2016595282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02252b669b1362045a9014adb29375cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &2040092747
 GameObject:
   m_ObjectHideFlags: 0

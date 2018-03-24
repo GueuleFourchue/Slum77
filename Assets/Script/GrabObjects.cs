@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class GrabObjects : MonoBehaviour {
 
+	public Material[] alphaMaterials;
+
 	public Transform hand;
 	public float throwSpeed;
 
@@ -54,10 +56,22 @@ public class GrabObjects : MonoBehaviour {
 		isGrabbing = true;
 		grabbedObj = obj;
 
+		/*
         //Material
         Renderer rend = obj.GetChild(0).GetComponent<Renderer>();
         grabbedMat = rend.material;
         rend.material = alphaMat;
+		*/
+
+		//Material
+		Renderer rend = obj.GetChild(0).GetComponent<Renderer>();
+		grabbedMat = rend.material;
+		if (obj.GetComponentInChildren<GrabableObject_MatIndex> ()) 
+		{
+			int index = obj.GetComponentInChildren<GrabableObject_MatIndex> ().index;
+			rend.material = alphaMaterials [index];
+		}
+
 
         //Audio
         GrabObjectSfx script = grabbedObj.GetComponent<GrabObjectSfx>();
