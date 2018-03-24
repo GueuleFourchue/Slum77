@@ -33,7 +33,6 @@ public class Door : MonoBehaviour {
 	{
 		if (Input.GetMouseButtonDown (0) && canOpen) 
 		{
-
 			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 			RaycastHit hit;
 

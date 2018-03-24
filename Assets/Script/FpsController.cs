@@ -191,21 +191,21 @@ public class FpsController : MonoBehaviour {
 		{
 			Crouch_Audio.Play ();
 
+            GetComponent<CapsuleCollider>().height = 1.5f;
+            GetComponent<CapsuleCollider>().center = new Vector3(0,-0.68f,0);
+
 			camera.DOKill ();
 			camera.transform.DOLocalMoveY (cameraOriginYPosition - 0.7f, 1f).SetEase(Ease.OutBack);
-
-            GetComponent<CapsuleCollider>().height = 1.5f;
-            GetComponent<CapsuleCollider>().center = new Vector3(0,-0.25f,0);
         }
 		if (isCrouching) 
 		{
 			Crouch_Audio.Play ();
 
-			camera.DOKill ();
-			camera.transform.DOLocalMoveY (cameraOriginYPosition, 1f).SetEase(Ease.InOutCubic);
-
-            GetComponent<CapsuleCollider>().height = 2f;
+            GetComponent<CapsuleCollider>().height = 3f;
             GetComponent<CapsuleCollider>().center = Vector3.zero;
+
+			camera.DOKill ();
+			camera.transform.DOLocalMoveY (cameraOriginYPosition, 1f);
         }
 
 		isCrouching = !isCrouching;
