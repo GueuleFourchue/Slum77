@@ -502,7 +502,7 @@ MonoBehaviour:
   m_RenderSource: 1
   m_Size: {x: 2, y: 0.69, z: 20}
   m_Angle: 100
-  m_Intensity: 0.5
+  m_Intensity: 0.25
   m_Color: {r: 0.78676474, g: 0.9735294, b: 1, a: 1}
   m_Shadows: 0
   m_ShadowCullingMask:
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097385f2a510795498370c4d62e61572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IntensityMult: 1
+  m_IntensityMult: 0.5
   m_RangeMult: 1
   m_ForceOnForFog: 0
   m_Shadows: 0
