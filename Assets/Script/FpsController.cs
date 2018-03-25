@@ -14,8 +14,9 @@ public class FpsController : MonoBehaviour {
 	public float walkSpeed;
 	public float runSpeed;
 	public float slowWalkSpeed;
+    public float crawlSpeed;
 
-	[Header("Sounds")]
+    [Header("Sounds")]
 	public AudioSource Walk_Audio;
 	public AudioSource Run_Audio;
 	public AudioSource WalkSlow_Audio;
@@ -34,6 +35,7 @@ public class FpsController : MonoBehaviour {
 	bool isRunning;
 	bool isSlowWalking;
 	bool isCrouching;
+    bool isCrawling;
 
 	float cameraOriginYPosition;
 
@@ -187,32 +189,61 @@ public class FpsController : MonoBehaviour {
 
 	void Crouch()
 	{
-		if (!isCrouching) 
+		if (!isCrouching || isCrawling) 
 		{
+            if (GetComponent<CapsuleCollider>().enabled == false)
+            {
+                GetComponent<CapsuleCollider>().enabled = true;
+                GetComponent<BoxCollider>().enabled = false;
+            }
+                
+            Debug.Log("crouch");
 			Crouch_Audio.Play ();
 
-            GetComponent<CapsuleCollider>().height = 1.5f;
-            GetComponent<CapsuleCollider>().center = new Vector3(0,-0.68f,0);
+            GetComponent<CapsuleCollider>().height = 1.25f;
+            GetComponent<CapsuleCollider>().center = new Vector3(0,-0.6f,0);
 
 			camera.DOKill ();
 			camera.transform.DOLocalMoveY (cameraOriginYPosition - 0.7f, 1f).SetEase(Ease.OutBack);
+
+            isCrouching = true;
+            isCrawling = false;
         }
 		if (isCrouching) 
 		{
 			Crouch_Audio.Play ();
 
-            GetComponent<CapsuleCollider>().height = 3f;
+            GetComponent<CapsuleCollider>().height = 2.5f;
             GetComponent<CapsuleCollider>().center = Vector3.zero;
 
 			camera.DOKill ();
 			camera.transform.DOLocalMoveY (cameraOriginYPosition, 1f);
+
+            isCrouching = false;
         }
 
-		isCrouching = !isCrouching;
+        StartCoroutine(Crawl());
 	}
 
+    IEnumerator Crawl()
+    {
+        yield return new WaitForSeconds(0.4f);
+        if (Input.GetKey(KeyCode.C))
+        {
+            Crouch_Audio.Play();
 
-	void PlaySFX(AudioSource audio, float volume)
+            GetComponent<CapsuleCollider>().enabled = false;
+            GetComponent<BoxCollider>().enabled = true;
+
+            camera.DOKill();
+            camera.transform.DOLocalMoveY(0.1f, 0.8f).SetEase(Ease.OutBack);
+
+            isCrouching = false;
+            isCrawling = true;
+        }
+    }
+
+    void PlaySFX(AudioSource audio, float volume)
 	{
 		if (audio.volume == 0) 
 		{

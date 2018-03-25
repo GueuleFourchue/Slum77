@@ -7,12 +7,15 @@ using UnityEngine.AI;
 public class Door : MonoBehaviour {
 
 	Animator animator; 
-	Transform body;
+	public Transform doorLeft;
+    public Transform doorRight;
 
-	public float zMoveValue;
-	float originZValue;
+    public float xRightMoveValue;
+    public float xLeftMoveValue;
+    float leftOriginXValue;
+    float rightOriginXValue;
 
-	public NavMeshSurface surface;
+    //public NavMeshSurface surface;
 
 	bool canOpen;
 	bool isClosed = true;
@@ -24,10 +27,10 @@ public class Door : MonoBehaviour {
 
     void Start () 
 	{
-		animator = GetComponent<Animator> ();	
-		body = transform.GetChild (0).transform;
-		originZValue = body.transform.localPosition.z;
-	}
+		animator = GetComponent<Animator> ();
+        leftOriginXValue = doorLeft.localPosition.x;
+        rightOriginXValue = doorRight.localPosition.x;
+    }
 
 	void Update () 
 	{
@@ -38,10 +41,10 @@ public class Door : MonoBehaviour {
 
 			if (Physics.Raycast (ray, out hit) && hit.transform.name =="Switch") 
 			{
-				if (Vector3.Distance (hit.point, transform.position) < 7) 
+                if (Vector3.Distance (hit.point, transform.position) < 7) 
 				{
                     Button_Audio.Play();
-                    StartCoroutine (DoorMove (zMoveValue, Open_Audio, false));
+                    StartCoroutine (DoorMove (Open_Audio));
 				}
 			}
 		}
@@ -62,24 +65,42 @@ public class Door : MonoBehaviour {
 		{
 			if (!isClosed) 
 			{
-				StartCoroutine (DoorMove (originZValue, Close_Audio, true));
+				StartCoroutine (DoorMoveBack (Close_Audio));
 			}
 
 			canOpen = false;
 		}
 	}
 		
-	IEnumerator DoorMove(float value, AudioSource audio, bool closed)
+	IEnumerator DoorMove(AudioSource audio)
 	{
 		yield return new WaitForSeconds (0.3f);
 
-		body.transform.DOKill ();
-		body.transform.DOLocalMoveZ (value, 1.2f).SetEase (Ease.OutBack).OnComplete(() =>
+		doorRight.transform.DOKill ();
+        doorLeft.transform.DOKill();
+
+        doorRight.transform.DOLocalMoveX (xRightMoveValue, 1.2f).SetEase (Ease.OutCubic).OnComplete(() =>
 			{
-				isClosed = closed;
+				isClosed = false;
 			});
-		
-		audio.Play();
+        doorLeft.transform.DOLocalMoveX(xLeftMoveValue, 1.2f).SetEase(Ease.OutCubic );
+
+        audio.Play();
 	}
-		
+
+    IEnumerator DoorMoveBack(AudioSource audio)
+    {
+        yield return new WaitForSeconds(0.3f);
+
+        doorRight.transform.DOKill();
+        doorLeft.transform.DOKill();
+
+        doorRight.transform.DOLocalMoveX(rightOriginXValue, 1.2f).SetEase(Ease.OutCubic).OnComplete(() =>
+        {
+            isClosed = true;
+        });
+        doorLeft.transform.DOLocalMoveX(leftOriginXValue, 1.2f).SetEase(Ease.OutCubic);
+
+        audio.Play();
+    }
 }
