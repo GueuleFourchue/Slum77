@@ -8,6 +8,7 @@ using UnityEngine.Audio;
 public class PrezManager : MonoBehaviour {
 
     CanvasGroup canvasGroup1;
+	public Vector3 prezPosition;
 	public CanvasGroup canvasGroup2;
     public GameObject prezCamera;
     public GameObject canvasCursor;
@@ -50,7 +51,7 @@ public class PrezManager : MonoBehaviour {
 
 		camera.DOKill ();
 
-		camera.DOMove (new Vector3 (26.5f, 2, 7.15f), 2f).OnComplete(() =>
+		camera.DOMove (prezPosition, 2f).OnComplete(() =>
 			{
                 prezCamera.SetActive(true); 
                 canvasGroup1.DOFade(1, 0.5f).OnComplete(() =>
