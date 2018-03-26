@@ -15515,8 +15515,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 873291063}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.615, y: 2.274, z: 10.155}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -7.89, y: 2.274, z: 16.15}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 1779317291}
@@ -15526,7 +15526,7 @@ Transform:
   - {fileID: 1935464578}
   m_Father: {fileID: 0}
   m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!54 &873291069
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16777,7 +16777,7 @@ Transform:
   - {fileID: 1959825306}
   - {fileID: 1909323895}
   m_Father: {fileID: 1723658918}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 90.00001}
 --- !u!1 &993763214
 GameObject:
@@ -25108,6 +25108,74 @@ MonoBehaviour:
   Open_Audio: {fileID: 930967633}
   Close_Audio: {fileID: 930967632}
   Button_Audio: {fileID: 930967634}
+--- !u!1001 &1474029522
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1723658918}
+    m_Modifications:
+    - target: {fileID: 4836248456457878, guid: 50aab91193187454a8562fce3e3d86f0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836248456457878, guid: 50aab91193187454a8562fce3e3d86f0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 6.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836248456457878, guid: 50aab91193187454a8562fce3e3d86f0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 7.076
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836248456457878, guid: 50aab91193187454a8562fce3e3d86f0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836248456457878, guid: 50aab91193187454a8562fce3e3d86f0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836248456457878, guid: 50aab91193187454a8562fce3e3d86f0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836248456457878, guid: 50aab91193187454a8562fce3e3d86f0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836248456457878, guid: 50aab91193187454a8562fce3e3d86f0, type: 2}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1381392178125858, guid: 50aab91193187454a8562fce3e3d86f0, type: 2}
+      propertyPath: m_Name
+      value: Light (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 33601605716070352, guid: 50aab91193187454a8562fce3e3d86f0,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836248456457878, guid: 50aab91193187454a8562fce3e3d86f0, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836248456457878, guid: 50aab91193187454a8562fce3e3d86f0, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836248456457878, guid: 50aab91193187454a8562fce3e3d86f0, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 50aab91193187454a8562fce3e3d86f0, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1474029523 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4836248456457878, guid: 50aab91193187454a8562fce3e3d86f0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1474029522}
 --- !u!43 &1475890793
 Mesh:
   m_ObjectHideFlags: 0
@@ -28175,6 +28243,7 @@ Transform:
   - {fileID: 1762044758}
   - {fileID: 846805725}
   - {fileID: 153699935}
+  - {fileID: 1474029523}
   - {fileID: 986598684}
   m_Father: {fileID: 0}
   m_RootOrder: 13
