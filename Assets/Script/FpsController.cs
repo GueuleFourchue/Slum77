@@ -95,8 +95,13 @@ public class FpsController : MonoBehaviour {
 		{
 			moveX = Input.GetAxis ("Horizontal") * Time.deltaTime * slowWalkSpeed;
 			moveZ = Input.GetAxis ("Vertical") * Time.deltaTime * slowWalkSpeed;
-		} 
-		else 
+		}
+        else if (isCrawling)
+        {
+            moveX = Input.GetAxis("Horizontal") * Time.deltaTime * crawlSpeed;
+            moveZ = Input.GetAxis("Vertical") * Time.deltaTime * crawlSpeed;
+        }
+        else 
 		{
 			moveX = Input.GetAxis ("Horizontal") * Time.deltaTime * walkSpeed;
 			moveZ = Input.GetAxis ("Vertical") * Time.deltaTime * walkSpeed;
@@ -189,38 +194,36 @@ public class FpsController : MonoBehaviour {
 
 	void Crouch()
 	{
-		if (!isCrouching || isCrawling) 
-		{
-            if (GetComponent<CapsuleCollider>().enabled == false)
-            {
-                GetComponent<CapsuleCollider>().enabled = true;
-                GetComponent<BoxCollider>().enabled = false;
-            }
-                
-            Debug.Log("crouch");
-			Crouch_Audio.Play ();
-
-            GetComponent<CapsuleCollider>().height = 1.25f;
-            GetComponent<CapsuleCollider>().center = new Vector3(0,-0.6f,0);
-
-			camera.DOKill ();
-			camera.transform.DOLocalMoveY (cameraOriginYPosition - 0.7f, 1f).SetEase(Ease.OutBack);
-
-            isCrouching = true;
-            isCrawling = false;
-        }
 		if (isCrouching) 
 		{
-			Crouch_Audio.Play ();
+            Crouch_Audio.Play ();
 
             GetComponent<CapsuleCollider>().height = 2.5f;
             GetComponent<CapsuleCollider>().center = Vector3.zero;
 
 			camera.DOKill ();
 			camera.transform.DOLocalMoveY (cameraOriginYPosition, 1f);
-
-            isCrouching = false;
         }
+        if (!isCrouching || isCrawling)
+        {
+            if (GetComponent<CapsuleCollider>().enabled == false)
+            {
+                GetComponent<CapsuleCollider>().enabled = true;
+                GetComponent<BoxCollider>().enabled = false;
+            }
+
+            Crouch_Audio.Play();
+
+            GetComponent<CapsuleCollider>().height = 1.25f;
+            GetComponent<CapsuleCollider>().center = new Vector3(0, -0.6f, 0);
+
+            camera.DOKill();
+            camera.transform.DOLocalMoveY(cameraOriginYPosition - 0.7f, 1f).SetEase(Ease.OutBack);
+
+            isCrawling = false;
+        }
+
+        isCrouching = !isCrouching;
 
         StartCoroutine(Crawl());
 	}
@@ -236,7 +239,7 @@ public class FpsController : MonoBehaviour {
             GetComponent<BoxCollider>().enabled = true;
 
             camera.DOKill();
-            camera.transform.DOLocalMoveY(0.1f, 0.8f).SetEase(Ease.OutBack);
+            camera.transform.DOLocalMoveY(cameraOriginYPosition - 1.2f, 0.8f).SetEase(Ease.OutBack);
 
             isCrouching = false;
             isCrawling = true;
