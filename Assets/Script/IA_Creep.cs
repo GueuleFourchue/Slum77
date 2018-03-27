@@ -7,6 +7,7 @@ public class IA_Creep : MonoBehaviour {
 
 	NavMeshAgent agent;
 	public Transform player;
+    public Animator anim;
 
 	void Start () 
 	{

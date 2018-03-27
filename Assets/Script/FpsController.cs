@@ -23,6 +23,9 @@ public class FpsController : MonoBehaviour {
 	public AudioSource Crouch_Audio;
     public AudioSource Torch_Audio;
 
+    [Header("Anim")]
+    public Animator animator;
+
     private AudioSource actual_Audio;
 
 	float horizontal;
@@ -39,7 +42,6 @@ public class FpsController : MonoBehaviour {
 
 	float cameraOriginYPosition;
 
-	Animator animator;
 	VignetteAndChromaticAberration effect;
 
 	bool audioIsStopping;
@@ -48,7 +50,6 @@ public class FpsController : MonoBehaviour {
 	void Start ()
 	{
 		camera = Camera.main;
-		animator = camera.GetComponent<Animator> ();
 
 		effect = camera.GetComponent <VignetteAndChromaticAberration>();
 		cameraOriginYPosition = camera.transform.localPosition.y;
@@ -116,6 +117,11 @@ public class FpsController : MonoBehaviour {
 				Run_Audio.DOFade (0, 0.2f);
 
 				headbob.Idle ();
+
+                if (isSlowWalking)
+                    animator.SetTrigger("Idle");
+                if (isCrouching)
+                    animator.SetTrigger("Crouch");
             }
 			else if (isRunning)
 			{
@@ -124,14 +130,20 @@ public class FpsController : MonoBehaviour {
 				WalkSlow_Audio.DOFade (0, 0.2f);
 
 				headbob.Run ();
+                animator.SetTrigger("Walk");
             }
-			else 
+            else if (isCrawling)
+            {
+                animator.SetTrigger("Crawl");
+            }
+            else 
 			{
 				PlaySFX (Walk_Audio, 0.4f);
 				Run_Audio.DOFade (0, 0.2f);	
 				WalkSlow_Audio.DOFade (0, 0.2f);
 
 				headbob.Walk ();
+                animator.SetTrigger("Walk");
             }
 				
 		}
@@ -141,6 +153,7 @@ public class FpsController : MonoBehaviour {
 			StopSFX (Walk_Audio);
             StopSFX(WalkSlow_Audio);
             headbob.Idle ();
+            animator.SetTrigger("Idle");
         }
 			
 		transform.Translate(moveX, 0, moveZ);
