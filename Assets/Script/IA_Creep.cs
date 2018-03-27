@@ -12,6 +12,7 @@ public class IA_Creep : MonoBehaviour {
 
     public Transform player;
     public Animator animator;
+    public GameObject light;
 
 	void Start () 
 	{
@@ -21,6 +22,7 @@ public class IA_Creep : MonoBehaviour {
     public void Tease()
     {
         StartCoroutine(TeaseCorou());
+        light.SetActive(true);
     }
 
     public IEnumerator TeaseCorou()

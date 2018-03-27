@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityStandardAssets.ImageEffects;
+using UnityEngine.SceneManagement;
 
 public class FpsController : MonoBehaviour {
 
@@ -71,6 +72,9 @@ public class FpsController : MonoBehaviour {
         }
 
 		Movement ();
+
+        if (Input.GetKeyDown(KeyCode.P))
+            SceneManager.LoadScene(0);
 	}
 
 
