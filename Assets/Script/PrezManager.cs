@@ -59,7 +59,7 @@ public class PrezManager : MonoBehaviour {
 						canvasGroup2.DOFade(1, 1.5f);
 						canDeactivate = true;
 						SfxAudioMixer.DOSetFloat("SfxVolume", -50f, 3f);
-						ambientAudioMixer.DOSetFloat("AmbientVolume", -20f, 10f);
+						ambientAudioMixer.DOSetFloat("AmbientVolume", -40f, 10f);
 					});
 			});
 		camera.DORotate (Vector3.zero, 2f);

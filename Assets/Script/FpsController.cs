@@ -128,7 +128,7 @@ public class FpsController : MonoBehaviour {
 		{
 			if (isSlowWalking || isCrouching) 
 			{
-				PlaySFX (WalkSlow_Audio, 0.3f);
+				PlaySFX (WalkSlow_Audio, 0.2f);
 				Walk_Audio.DOFade (0, 0.2f);	
 				Run_Audio.DOFade (0, 0.2f);
 
@@ -141,7 +141,7 @@ public class FpsController : MonoBehaviour {
             }
 			else if (isRunning)
 			{
-				PlaySFX (Run_Audio, 0.55f);
+				PlaySFX (Run_Audio, 0.4f);
 				Walk_Audio.DOFade (0, 0.2f);	
 				WalkSlow_Audio.DOFade (0, 0.2f);
 
@@ -154,7 +154,7 @@ public class FpsController : MonoBehaviour {
             }
             else 
 			{
-				PlaySFX (Walk_Audio, 0.4f);
+				PlaySFX (Walk_Audio, 0.3f);
 				Run_Audio.DOFade (0, 0.2f);	
 				WalkSlow_Audio.DOFade (0, 0.2f);
 
