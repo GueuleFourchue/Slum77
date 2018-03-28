@@ -70,8 +70,20 @@ public class FpsController : MonoBehaviour {
         {
             Torch();
         }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Crouch_Audio.Play();
 
-		Movement ();
+            GetComponent<CapsuleCollider>().enabled = false;
+            GetComponent<BoxCollider>().enabled = true;
+
+            camera.DOKill();
+            camera.transform.DOLocalMoveY(cameraOriginYPosition - 1.2f, 0.8f).SetEase(Ease.OutBack);
+
+            isCrouching = false;
+            isCrawling = true;
+        }
+        Movement ();
 
         if (Input.GetKeyDown(KeyCode.P))
             SceneManager.LoadScene(0);
