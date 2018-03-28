@@ -81,8 +81,8 @@ public class AI_End : MonoBehaviour {
         ambientAudioMixer.DOSetFloat("AmbientVolume", -80f, 8f);
         SfxAudioMixer.DOSetFloat("SfxVolume", -80f, 8f);
 
-        End_Audio.DOFade(1f, 0.5f);
         End_Audio.Play();
+        End_Audio.DOFade(1f, 0.8f);
 
         yield return new WaitForSeconds(0.8f);
         canvasEnd.EndAnim();
