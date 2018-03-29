@@ -54,7 +54,9 @@ public class FpsController : MonoBehaviour {
 
 		effect = camera.GetComponent <VignetteAndChromaticAberration>();
 		cameraOriginYPosition = camera.transform.localPosition.y;
-	}
+
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
 	void Update () 
 	{

@@ -84,6 +84,12 @@ public class AI_End : MonoBehaviour {
         End_Audio.Play();
         End_Audio.DOFade(1f, 0.8f);
 
+        Camera.main.DOFieldOfView(90, 1f);
+        Camera.main.GetComponent<Colorful.Glitch>().enabled = true;
+        Camera.main.GetComponent<UnityStandardAssets.ImageEffects.MotionBlur>().enabled = true;
+        Camera.main.GetComponent<UnityStandardAssets.ImageEffects.VignetteAndChromaticAberration>().enabled = true;
+        Camera.main.GetComponent<UnityStandardAssets.ImageEffects.Bloom>().enabled = true;
+ 
         yield return new WaitForSeconds(0.8f);
         canvasEnd.EndAnim();
     }
