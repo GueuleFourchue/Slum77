@@ -73,7 +73,7 @@ public class AI_End : MonoBehaviour {
         hasDoneAnim = true;
 
         //EndRush
-        mesh.SetActive(true);
+        //mesh.SetActive(true);
         anim.SetTrigger("Run");
         rush = true;
         yield return new WaitForSeconds(0.7f);
@@ -89,8 +89,11 @@ public class AI_End : MonoBehaviour {
         Camera.main.GetComponent<UnityStandardAssets.ImageEffects.MotionBlur>().enabled = true;
         Camera.main.GetComponent<UnityStandardAssets.ImageEffects.VignetteAndChromaticAberration>().enabled = true;
         Camera.main.GetComponent<UnityStandardAssets.ImageEffects.Bloom>().enabled = true;
- 
-        yield return new WaitForSeconds(0.8f);
+
+        yield return new WaitForSeconds(0.3f);
+        mesh.SetActive(true);
+
+        yield return new WaitForSeconds(0.4f);
         canvasEnd.EndAnim();
     }
 }
